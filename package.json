@@ -1,0 +1,30 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:login": "playwright test tests/login.spec.ts",
+    "test:profile": "playwright test tests/profile.spec.ts",
+    "test:settings": "playwright test tests/settings.spec.ts",
+    "test:settings:my-documents": "playwright test tests/settings-my-documents.spec.ts",
+    "test:settings:request-forms": "playwright test tests/settings-request-forms.spec.ts",
+    "test:settings:cache-management": "playwright test tests/settings-cache-management.spec.ts",
+    "test:settings:version": "playwright test tests/settings-version.spec.ts",
+    "test:settings:site-administration": "playwright test tests/settings-site-administration.spec.ts",
+    "test:settings:site-security": "playwright test tests/settings-site-security.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.2",
+    "ts-node": "10.9.2",
+    "typescript": "7.0.2"
+  }
+}

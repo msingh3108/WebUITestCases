@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cases - Login & Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background: #f8f9fa;
+            color: #333;
+            padding: 15px 20px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        thead {
+            background: #f8f9fa;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #e0e0e0;
+        }
+
+        td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #e8eaf6;
+            transition: background 0.2s ease;
+        }
+
+        .serial {
+            font-weight: 600;
+            color: #667eea;
+            width: 80px;
+        }
+
+        .page {
+            color: #764ba2;
+            font-weight: 500;
+            width: 180px;
+        }
+
+        .summary {
+            color: #333;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-ready {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        .details-list {
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .details-list li {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Test Cases Documentation</h1>
+            <p>Login, Profile & Settings Test Suite</p>
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number">26</span>
+                    <span class="stat-label">Total Test Cases</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Test Pages</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">Playwright</span>
+                    <span class="stat-label">Framework</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Login Tests Section -->
+            <div class="section">
+                <div class="section-title">📝 Login Tests (login.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">1</td>
+                            <td class="page">login.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display login form</strong>
+                                <ul class="details-list">
+                                    <li>Navigate to login page</li>
+                                    <li>Verify email input field is visible</li>
+                                    <li>Verify password input field is visible</li>
+                                    <li>Verify submit button is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">2</td>
+                            <td class="page">login.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should login with valid credentials</strong>
+                                <ul class="details-list">
+                                    <li>Navigate to login page</li>
+                                    <li>Fill email: "manager"</li>
+                                    <li>Fill password: "password"</li>
+                                    <li>Click "Sign In" button</li>
+                                    <li>Wait for navigation and verify success</li>
+                                    <li>Verify URL contains "welcome" or "settings"</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">3</td>
+                            <td class="page">login.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should show error with invalid credentials</strong>
+                                <ul class="details-list">
+                                    <li>Navigate to login page</li>
+                                    <li>Fill invalid email: "invalid@example.com"</li>
+                                    <li>Fill invalid password: "wrongpassword"</li>
+                                    <li>Click "Sign In" button</li>
+                                    <li>Verify page remains on the login URL (no navigation occurs)</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">4</td>
+                            <td class="page">login.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should require email field</strong>
+                                <ul class="details-list">
+                                    <li>Navigate to login page</li>
+                                    <li>Leave email field empty</li>
+                                    <li>Fill password: "password123"</li>
+                                    <li>Click submit button</li>
+                                    <li>Verify email input validation fails</li>
+                                    <li>Check that form is marked as invalid</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">5</td>
+                            <td class="page">login.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should require password field</strong>
+                                <ul class="details-list">
+                                    <li>Navigate to login page</li>
+                                    <li>Fill email: "user@example.com"</li>
+                                    <li>Leave password field empty</li>
+                                    <li>Click submit button</li>
+                                    <li>Verify password input validation fails</li>
+                                    <li>Check that form is marked as invalid</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Profile Navigation Tests Section -->
+            <div class="section">
+                <div class="section-title">👤 Profile Navigation Tests (profile.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">6</td>
+                            <td class="page">profile.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should navigate to Profile via hamburger menu</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager"</li>
+                                    <li>Click hamburger navigation menu button</li>
+                                    <li>Click "Profile" link in the side navigation</li>
+                                    <li>Verify URL contains "settings/my-account"</li>
+                                    <li>Verify "Account Settings" heading is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">7</td>
+                            <td class="page">profile.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display personal information on Profile page</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager"</li>
+                                    <li>Click hamburger navigation menu button</li>
+                                    <li>Click "Profile" link in the side navigation</li>
+                                    <li>Verify "Personal Information" heading is visible</li>
+                                    <li>Verify "Name" and "Email" fields are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Settings Navigation Tests Section -->
+            <div class="section">
+                <div class="section-title">🔧 Settings Navigation Tests (settings.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">8</td>
+                            <td class="page">settings.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should navigate to Settings via hamburger menu</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager"</li>
+                                    <li>Click hamburger navigation menu button</li>
+                                    <li>Click "Settings" link in the side navigation</li>
+                                    <li>Verify URL ends with "/settings"</li>
+                                    <li>Verify "User Settings" and "Administrative Settings" section labels are visible</li>
+                                    <li>Verify "Choose a setting on the left to edit" placeholder is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">9</td>
+                            <td class="page">settings.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display all administrative setting options</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to /settings</li>
+                                    <li>Verify "My Document Settings", "Pages Settings", "Request Forms" buttons are visible</li>
+                                    <li>Verify "Theme Settings", "Site Administration" buttons are visible</li>
+                                    <li>Verify "Cache Management", "Site Security", "Version Details" buttons are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">10</td>
+                            <td class="page">settings.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should navigate to Theme Settings section</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to /settings</li>
+                                    <li>Click "Theme Settings" option</li>
+                                    <li>Verify URL contains "settings/theming"</li>
+                                    <li>Verify "Theme Settings" heading is visible</li>
+                                    <li>Verify "Apply Theme to Site" button is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">11</td>
+                            <td class="page">settings.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should navigate to Pages Settings &gt; Welcome and display its configuration</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to /settings</li>
+                                    <li>Click "Pages Settings" option</li>
+                                    <li>Verify URL contains "settings/pages-configuration"</li>
+                                    <li>Click "Welcome" drawer link in the Drawer Links list</li>
+                                    <li>Verify "Page ID:Welcome" and "Page Url:/welcome" are visible</li>
+                                    <li>Verify Link Name textbox has value "Welcome"</li>
+                                    <li>Verify "Include in drawer" checkbox is checked</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- My Document Settings Tests Section -->
+            <div class="section">
+                <div class="section-title">📄 My Document Settings Tests (settings-my-documents.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">12</td>
+                            <td class="page">settings-my-documents.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display My Documents Configuration page elements</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to My Document Settings</li>
+                                    <li>Verify "My Documents Configuration" heading is visible</li>
+                                    <li>Verify "New Filter" and "Save" buttons are visible</li>
+                                    <li>Verify "Custom Query" label is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">13</td>
+                            <td class="page">settings-my-documents.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should add a new filter when clicking New Filter</strong>
+                                <ul class="details-list">
+                                    <li>Click "New Filter" button</li>
+                                    <li>Verify "Section Label", "Document Template String" fields appear</li>
+                                    <li>Verify "Constraint Type" and "Operator" fields appear</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Request Forms Settings Tests Section -->
+            <div class="section">
+                <div class="section-title">📝 Request Forms Settings Tests (settings-request-forms.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">14</td>
+                            <td class="page">settings-request-forms.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Request Forms page elements</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to Request Forms</li>
+                                    <li>Verify "Request Forms" heading and "Add" button are visible</li>
+                                    <li>Verify "No Forms Configured" empty-state message is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">15</td>
+                            <td class="page">settings-request-forms.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should have an enabled Add button</strong>
+                                <ul class="details-list">
+                                    <li>Verify the "Add" button is enabled</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Cache Management Tests Section -->
+            <div class="section">
+                <div class="section-title">🗄️ Cache Management Tests (settings-cache-management.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">16</td>
+                            <td class="page">settings-cache-management.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Cache Management page elements</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to Cache Management</li>
+                                    <li>Verify "Document Types" and "WorkView Applications" tabs are visible</li>
+                                    <li>Verify "Refresh" and "Populate Cache" buttons are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">17</td>
+                            <td class="page">settings-cache-management.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should switch between Document Types and WorkView Applications tabs</strong>
+                                <ul class="details-list">
+                                    <li>Click "WorkView Applications" tab and verify it becomes selected</li>
+                                    <li>Click "Document Types" tab and verify it becomes selected</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Version Details Tests Section -->
+            <div class="section">
+                <div class="section-title">ℹ️ Version Details Tests (settings-version.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">18</td>
+                            <td class="page">settings-version.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display version and hash information</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to Version Details</li>
+                                    <li>Verify "Web UI Framework Version" and "Hash" headings are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">19</td>
+                            <td class="page">settings-version.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Web UI Help and Third Party Notices links</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Web UI Help" and "Third Party Notices" headings are visible</li>
+                                    <li>Verify "Font Awesome" link is visible with correct href</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Site Administration Tests Section -->
+            <div class="section">
+                <div class="section-title">🛠️ Site Administration Tests (settings-site-administration.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">20</td>
+                            <td class="page">settings-site-administration.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Site Administration toolbar and warning</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to Site Administration</li>
+                                    <li>Verify "Site Administration" heading is visible</li>
+                                    <li>Verify "Reset Cache" and "Save" buttons are visible</li>
+                                    <li>Verify client-side toggles warning text is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">21</td>
+                            <td class="page">settings-site-administration.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Default Document Viewer Settings toggles</strong>
+                                <ul class="details-list">
+                                    <li>Verify all 7 Document Viewer checkboxes are visible (System Tasks, Ad Hoc Tasks, Revisions Icon, Delete Document Icon, Modify Keywords, Print Button, Auto Expand Keywords)</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">22</td>
+                            <td class="page">settings-site-administration.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Default WorkView Viewer Settings toggles</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Enable History" and "Enable Save" checkboxes are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">23</td>
+                            <td class="page">settings-site-administration.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Keyword Settings toggles and dropdown</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Disable formatting on Numeric 9/20" checkboxes are visible</li>
+                                    <li>Verify "Standalone Keyword Display Order" dropdown label is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">24</td>
+                            <td class="page">settings-site-administration.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should toggle a Document Viewer setting switch</strong>
+                                <ul class="details-list">
+                                    <li>Read initial checked state of "Display Print Button" checkbox</li>
+                                    <li>Click it and verify the checked state flips</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Site Security Tests Section -->
+            <div class="section">
+                <div class="section-title">🔒 Site Security Tests (settings-site-security.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">25</td>
+                            <td class="page">settings-site-security.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Site Security page elements</strong>
+                                <ul class="details-list">
+                                    <li>Login as "manager" and navigate to Site Security</li>
+                                    <li>Verify "Site Security" heading and "Add Policy" button are visible</li>
+                                    <li>Verify "Pages" and "Sign up" policy entries are visible</li>
+                                    <li>Verify "Choose a configuration on the left to get started" placeholder is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">26</td>
+                            <td class="page">settings-site-security.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display Pages policy configuration when selected</strong>
+                                <ul class="details-list">
+                                    <li>Click the "Pages" policy</li>
+                                    <li>Verify "View Policy Summary", "Copy Policy", "Save" buttons are visible</li>
+                                    <li>Verify "Category" label and "Web UI Pages" category are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Test Execution Details -->
+            <div class="section">
+                <div class="section-title">⚙️ Test Execution Details</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Framework</strong></td>
+                            <td>Playwright Test</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Language</strong></td>
+                            <td>TypeScript</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Browsers</strong></td>
+                            <td>Chromium</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Files</strong></td>
+                            <td>tests/login.spec.ts, tests/profile.spec.ts, tests/settings.spec.ts, tests/settings-my-documents.spec.ts, tests/settings-request-forms.spec.ts, tests/settings-cache-management.spec.ts, tests/settings-version.spec.ts, tests/settings-site-administration.spec.ts, tests/settings-site-security.spec.ts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Base URL</strong></td>
+                            <td>https://hyl-066478.onbase.net/WebUIFramework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Helper Functions</strong></td>
+                            <td>tests/helpers.ts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="section">
+                <div class="section-title">🚀 Quick Commands</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code style="background: #f0f0f0; padding: 5px; border-radius: 3px;">npm test</code></td>
+                            <td>Run all test cases</td>
+                        </tr>
+                        <tr>
+                            <td><code style="background: #f0f0f0; padding: 5px; border-radius: 3px;">npm run test:login</code></td>
+                            <td>Run only login test cases</td>
+                        </tr>
+                        <tr>
+                            <td><code style="background: #f0f0f0; padding: 5px; border-radius: 3px;">npm run test:navigation</code></td>
+                            <td>Run only navigation test cases</td>
+                        </tr>
+                        <tr>
+                            <td><code style="background: #f0f0f0; padding: 5px; border-radius: 3px;">npm run test:ui</code></td>
+                            <td>Run tests with interactive UI</td>
+                        </tr>
+                        <tr>
+                            <td><code style="background: #f0f0f0; padding: 5px; border-radius: 3px;">npm run test:debug</code></td>
+                            <td>Run tests in debug mode</td>
+                        </tr>
+                        <tr>
+                            <td><code style="background: #f0f0f0; padding: 5px; border-radius: 3px;">npm run test:report</code></td>
+                            <td>View HTML test report</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Test Cases Documentation</strong></p>
+            <p>Generated for Playwright Testing Framework | TypeScript</p>
+            <p>Last Updated: 2026-09-21</p>
+        </div>
+    </div>
+</body>
+</html>
