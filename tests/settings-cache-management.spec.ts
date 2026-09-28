@@ -1,14 +1,16 @@
-import { test, expect } from '@playwright/test';
-import { loginUser } from './helpers';
+import { test, expect} from '../fixtures/testFixtures';
 
 test.describe('Cache Management Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await loginUser(page, 'manager', 'password');
-    await page.goto('settings');
-    await page.getByRole('button', { name: 'Cache Management' }).evaluate((el) => (el as HTMLElement).click());
-    await expect(page).toHaveURL(/settings\/cache-management/);
+  test.beforeEach(async ({ loginPage, settingsPage, page }) => {
+    await loginPage.login(process.env.STANDARD_USERNAME ?? 'MANAGER', process.env.STANDARD_PASSWORD ?? 'password');
+    await settingsPage.goToCacheManagement();
   });
 
+  test.afterEach(async ({ loginPage,page }) => {
+    // Logout after each test to ensure a clean state
+    await loginPage.logout();
+  });
+  
   test('should display Cache Management page elements', async ({ page }) => {
     // Verify heading, tabs, and toolbar buttons
     await expect(page.getByRole('heading', { name: 'Cache Management' })).toBeVisible();

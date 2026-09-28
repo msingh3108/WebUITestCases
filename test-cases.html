@@ -195,11 +195,11 @@
             <p>Login, Profile & Settings Test Suite</p>
             <div class="stats">
                 <div class="stat-box">
-                    <span class="stat-number">26</span>
+                    <span class="stat-number">35</span>
                     <span class="stat-label">Total Test Cases</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-number">9</span>
+                    <span class="stat-number">10</span>
                     <span class="stat-label">Test Pages</span>
                 </div>
                 <div class="stat-box">
@@ -719,6 +719,140 @@
                 </table>
             </div>
 
+            <!-- Page Builder Tests Section -->
+            <div class="section">
+                <div class="section-title">🧩 Page Builder Tests (page-builder.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">27</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should navigate to Page Builder via hamburger menu</strong>
+                                <ul class="details-list">
+                                    <li>Open the hamburger navigation menu</li>
+                                    <li>Click "Page Builder" link in the side navigation</li>
+                                    <li>Verify navigation to the Page Builder (pages-designer) page</li>
+                                    <li>Verify "No page selected" heading is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">28</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display the toolbar and empty state when no page is selected</strong>
+                                <ul class="details-list">
+                                    <li>Verify "New Page", "Delete Page" and "Save" buttons are visible</li>
+                                    <li>Verify "No page selected" heading is visible</li>
+                                    <li>Verify "Choose or create a page to get started" placeholder text is visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">29</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should list the existing pages under the Pages section</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Pages" section button is visible</li>
+                                    <li>Verify "Date Test", "PSMyPage", "PSWorkFlowPage" and "WV Document" page entries are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">30</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display available Controls to add to a page</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Controls" section button and "Filter Component" search textbox are visible</li>
+                                    <li>Verify "Auto Query", "Form", "Keyword Search", "Search Results" and "Viewer" controls are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">31</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should filter the Controls list using the Filter Component search box</strong>
+                                <ul class="details-list">
+                                    <li>Fill the "Filter Component" search box with "Viewer"</li>
+                                    <li>Verify only the matching "Viewer" control remains visible</li>
+                                    <li>Verify non-matching controls "Auto Query" and "Keyword Search" are not visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">32</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should collapse and expand the Pages list section</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Date Test" page entry is visible</li>
+                                    <li>Click the "Pages" toggle to collapse the section and verify "Date Test" is no longer visible</li>
+                                    <li>Click the "Pages" toggle again to expand and verify "Date Test" is visible again</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">33</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should hide and show the left panel</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Pages" section is visible</li>
+                                    <li>Click "Hide Left Panel" and verify "Pages" is no longer visible and the toggle button becomes "Show Left Panel"</li>
+                                    <li>Click "Show Left Panel" and verify "Pages" is visible again</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">34</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should select a page and display its components and layout properties</strong>
+                                <ul class="details-list">
+                                    <li>Click the "Date Test" page entry</li>
+                                    <li>Verify navigation URL contains "activePageId=Date_Test" and "Date Test" heading is visible</li>
+                                    <li>Verify "Copy Page" button and assigned components "Auto Query", "Form" and "Viewer" are visible</li>
+                                    <li>Verify the Layout Properties panel shows "Layout Type" combobox, "Enable Page Toolbar" and "Enable Sidebar" checkboxes</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">35</td>
+                            <td class="page">page-builder.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should toggle the Layout Properties panel for a selected page</strong>
+                                <ul class="details-list">
+                                    <li>Select the "Date Test" page and verify "Layout Type" combobox is visible</li>
+                                    <li>Click "Layout Properties" to collapse the panel and verify "Layout Type" combobox is no longer visible</li>
+                                    <li>Click "Layout Properties" again to expand and verify "Layout Type" combobox is visible again</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-ready">Ready</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <!-- Test Execution Details -->
             <div class="section">
                 <div class="section-title">⚙️ Test Execution Details</div>
@@ -744,7 +878,7 @@
                         </tr>
                         <tr>
                             <td><strong>Test Files</strong></td>
-                            <td>tests/login.spec.ts, tests/profile.spec.ts, tests/settings.spec.ts, tests/settings-my-documents.spec.ts, tests/settings-request-forms.spec.ts, tests/settings-cache-management.spec.ts, tests/settings-version.spec.ts, tests/settings-site-administration.spec.ts, tests/settings-site-security.spec.ts</td>
+                            <td>tests/login.spec.ts, tests/profile.spec.ts, tests/settings.spec.ts, tests/settings-my-documents.spec.ts, tests/settings-request-forms.spec.ts, tests/settings-cache-management.spec.ts, tests/settings-version.spec.ts, tests/settings-site-administration.spec.ts, tests/settings-site-security.spec.ts, tests/page-builder.spec.ts</td>
                         </tr>
                         <tr>
                             <td><strong>Base URL</strong></td>

@@ -1,9 +1,13 @@
-import { test, expect } from '@playwright/test';
-import { loginUser } from './helpers';
+import { test, expect } from '../fixtures/testFixtures';
 
 test.describe('Profile Navigation Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await loginUser(page, 'manager', 'password');
+  test.beforeEach(async ({ loginPage, page }) => {
+    await loginPage.login(process.env.STANDARD_USERNAME ?? 'MANAGER', process.env.STANDARD_PASSWORD ?? 'password');
+  });
+
+  test.afterEach(async ({ loginPage,page }) => {
+    // Logout after each test to ensure a clean state
+    await loginPage.logout();
   });
 
   test('should navigate to Profile via hamburger menu', async ({ page }) => {

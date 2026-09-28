@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Login Tests', () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to login page
-    await page.goto('login');
+    await page.goto('');
   });
 
   test('should display login form', async ({ page }) => {
