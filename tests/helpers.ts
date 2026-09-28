@@ -10,7 +10,6 @@ export async function loginUser(page: Page, email: string, password: string) {
 
 export async function logout(page: Page) {
   await page.click('button:has-text("Logout")');
-  await page.waitForNavigation();
 }
 
 export async function isLoggedIn(page: Page): Promise<boolean> {

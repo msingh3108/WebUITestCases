@@ -1,12 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { loginUser } from './helpers';
+import { test, expect } from '../fixtures/testFixtures';
 
 test.describe('My Document Settings Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await loginUser(page, 'manager', 'password');
-    await page.goto('settings');
-    await page.getByRole('button', { name: 'My Document Settings' }).evaluate((el) => (el as HTMLElement).click());
-    await expect(page).toHaveURL(/settings\/my-documents-configuration/);
+  test.beforeEach(async ({ loginPage, settingsPage, page }) => {
+      await loginPage.login(process.env.STANDARD_USERNAME ?? 'MANAGER', process.env.STANDARD_PASSWORD ?? 'password');
+      await settingsPage.goToMyDocumentsConfiguration();
+  });
+  
+  test.afterEach(async ({ loginPage,page }) => {
+      // Logout after each test to ensure a clean state
+      await loginPage.logout();
   });
 
   test('should display My Documents Configuration page elements', async ({ page }) => {
