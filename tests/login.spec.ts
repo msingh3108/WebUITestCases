@@ -1,63 +1,95 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/testFixtures';
+import { getBearerToken, updateTestInExecution } from '../utils/jiraUtils';
+
+type TestResult = { jiraKey: string; status: 'passed' | 'failed' | 'timedOut' | 'skipped' | 'interrupted' };
 
 test.describe('Login Tests', () => {
+  const groupResults: TestResult[] = [];
   test.beforeEach(async ({ page }) => {
-    // Navigate to login page
-    await page.goto('');
+    // Login before each test
+     await page.goto('login');
   });
 
-  test('should display login form', async ({ page }) => {
-    // Verify login form elements are visible
-    await expect(page.locator('#email-address')).toBeVisible();
-    await expect(page.locator('#password')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Sign In' })).toBeVisible();
+  // Teardown
+  test.afterEach(async ({}, testInfo) => {
+    const jiraKey = testInfo.annotations.find(a => a.type === 'Jira')?.description;
+    if (jiraKey) {
+      groupResults.push({ jiraKey, status: testInfo.status ?? 'skipped' });
+    }
   });
 
-  test('should login with valid credentials', async ({ page }) => {
-    // Fill in login form
-    await page.fill('#email-address', 'manager');
-    await page.fill('#password', 'password');
-
-    // Click login button
-    await page.getByRole('button', { name: 'Sign In' }).click();
-
-    // Wait for navigation and verify successful login
-    await page.waitForURL(/welcome|settings/);
-    await expect(page).toHaveURL(/welcome|settings/);
+  // Update Jira Test Execution with results of this group
+  test.afterAll(async () => {
+    if (process.env.UPDATE_JIRA_TESTS !== 'true' || groupResults.length === 0) return;
+    const executionKey = process.env.TEST_EXECUTION_ID;
+    if (!executionKey) return;
+    try {
+      const token = await getBearerToken(
+        process.env.XRAY_CLIENT_ID ?? '',
+        process.env.XRAY_CLIENT_SECRET ?? ''
+      );
+      for (const { jiraKey, status } of groupResults) {
+        await updateTestInExecution(token, executionKey, jiraKey, status);
+      }
+      console.log(`[Xray] Group 'Web Client Gallery Tests' update complete.`);
+    } catch (err) {
+      console.error('[Xray] Group update failed:', err);
+    }
   });
 
-  test('should show error with invalid credentials', async ({ page }) => {
-    // Fill in invalid credentials
-    await page.fill('#email-address', 'invalid@example.com');
-    await page.fill('#password', 'wrongpassword');
+  test('Should login with valid credentials @Smoke', async ({ loginPage, page }) => {
+    test.info().annotations.push({ type: 'Jira', description: '' });
 
-    // Click login button
-    await page.getByRole('button', { name: 'Sign In' }).click();
+    await test.step('Login with valid credentials', async () => {
+      await loginPage.login(process.env.STANDARD_USERNAME ?? 'MANAGER', process.env.STANDARD_PASSWORD ?? 'password');
+    });
 
-    // Invalid credentials should not navigate away from the login page
-    await page.waitForTimeout(2000);
-    await expect(page).toHaveURL(/login/);
+    await test.step('Verify successful login', async () => {
+      await page.waitForURL(/welcome|settings/);
+      await expect(page).toHaveURL(/welcome|settings/);
+      await loginPage.logout();
+    });
   });
 
-  test('should require email field', async ({ page }) => {
-    // Leave email empty
-    await page.fill('#password', 'password123');
-    await page.getByRole('button', { name: 'Sign In' }).click();
+  test('Should validate required fields and display error for invalid credentials @Smoke', async ({ loginPage, page }) => {
+    test.info().annotations.push({ type: 'Jira', description: '' });
 
-    // Check for validation message
-    const emailInput = page.locator('#email-address');
-    const isInvalid = await emailInput.evaluate((el: HTMLInputElement) => !el.validity.valid);
-    expect(isInvalid).toBe(true);
+    const expectedErrorMessage = 'Invalid email or password. If you have forgotten your password, please try the forgot password link.';
+
+    await test.step('Leave email field blank and attempt login', async () => {
+      await loginPage.usernameInput.fill('');
+      await loginPage.passwordInput.fill(process.env.STANDARD_PASSWORD ?? 'password');
+      await loginPage.loginButton.click();
+      // email input should be invalid
+      const isInvalidEmail = await loginPage.usernameInput.evaluate((el: HTMLInputElement) => !el.validity.valid);
+      expect(isInvalidEmail).toBe(true);
+      // get error message
+      const errorMessage1 = await loginPage.errorMessage();
+      expect(errorMessage1).toBe(expectedErrorMessage);
+    });
+
+    await test.step('Leave password field blank and attempt login', async () => {
+      await loginPage.usernameInput.fill(process.env.STANDARD_USERNAME ?? 'MANAGER');
+      await loginPage.passwordInput.fill('');
+      await loginPage.loginButton.click();
+      // password input should be invalid
+      const isInvalidPassword = await loginPage.passwordInput.evaluate((el: HTMLInputElement) => !el.validity.valid);
+      expect(isInvalidPassword).toBe(true);
+      // get error message
+      const errorMessage2 = await loginPage.errorMessage();
+      expect(errorMessage2).toBe(expectedErrorMessage);
+    });
+
+    await test.step('Login with invalid credentials', async () => {
+      await loginPage.login('invalid@example.com', 'invalidpassword');
+      // error message should be displayed for invalid credentials
+      const errorMessage3 = await loginPage.errorMessage();
+      expect(errorMessage3).toBe(expectedErrorMessage);
+      // should not navigate away from the login page
+      await page.waitForTimeout(2000);
+      await expect(page).toHaveURL(/login/);
+    });
+
   });
 
-  test('should require password field', async ({ page }) => {
-    // Leave password empty
-    await page.fill('#email-address', 'user@example.com');
-    await page.getByRole('button', { name: 'Sign In' }).click();
-
-    // Check for validation message
-    const passwordInput = page.locator('#password');
-    const isInvalid = await passwordInput.evaluate((el: HTMLInputElement) => !el.validity.valid);
-    expect(isInvalid).toBe(true);
-  });
 });
