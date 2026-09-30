@@ -5,6 +5,7 @@ export class LoginPage extends BasePage {
   readonly usernameInput = this.page.getByRole('textbox', { name: 'Email Address' });
   readonly passwordInput = this.page.getByRole('textbox', { name: 'Password' });
   readonly loginButton = this.page.getByRole('button', { name: 'Sign In' });
+  readonly errorMessageLocator = this.page.locator("//p[contains(@class, 'error-message')]");
 
   constructor(page: Page) {
     super(page);
@@ -23,5 +24,9 @@ export class LoginPage extends BasePage {
     await this.page.getByRole('button', { name: 'User account menu' }).click();
     await this.page.getByRole('menuitem', { name: 'Logout' }).click();
     await this.page.waitForTimeout(2000);
+  }
+
+  async errorMessage(): Promise<string> {
+    return await this.errorMessageLocator.textContent() ?? '';
   }
 }

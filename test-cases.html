@@ -155,6 +155,26 @@
             color: #155724;
         }
 
+        .status-bug {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .bug-id {
+            color: #764ba2;
+            font-weight: 600;
+            width: 140px;
+        }
+
+        .bug-id a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .bug-id a:hover {
+            text-decoration: underline;
+        }
+
         .footer {
             background: #f8f9fa;
             padding: 20px;
@@ -195,11 +215,11 @@
             <p>Login, Profile & Settings Test Suite</p>
             <div class="stats">
                 <div class="stat-box">
-                    <span class="stat-number">35</span>
+                    <span class="stat-number">42</span>
                     <span class="stat-label">Total Test Cases</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-number">10</span>
+                    <span class="stat-number">12</span>
                     <span class="stat-label">Test Pages</span>
                 </div>
                 <div class="stat-box">
@@ -227,20 +247,6 @@
                             <td class="serial">1</td>
                             <td class="page">login.spec.ts</td>
                             <td class="summary">
-                                <strong>Should display login form</strong>
-                                <ul class="details-list">
-                                    <li>Navigate to login page</li>
-                                    <li>Verify email input field is visible</li>
-                                    <li>Verify password input field is visible</li>
-                                    <li>Verify submit button is visible</li>
-                                </ul>
-                            </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
-                        </tr>
-                        <tr>
-                            <td class="serial">2</td>
-                            <td class="page">login.spec.ts</td>
-                            <td class="summary">
                                 <strong>Should login with valid credentials</strong>
                                 <ul class="details-list">
                                     <li>Navigate to login page</li>
@@ -254,48 +260,20 @@
                             <td><span class="status-badge status-ready">Ready</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">3</td>
+                            <td class="serial">2</td>
                             <td class="page">login.spec.ts</td>
                             <td class="summary">
-                                <strong>Should show error with invalid credentials</strong>
+                                <strong>Should validate required fields and display error for invalid credentials</strong>
                                 <ul class="details-list">
-                                    <li>Navigate to login page</li>
-                                    <li>Fill invalid email: "invalid@example.com"</li>
-                                    <li>Fill invalid password: "wrongpassword"</li>
-                                    <li>Click "Sign In" button</li>
-                                    <li>Verify page remains on the login URL (no navigation occurs)</li>
-                                </ul>
-                            </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
-                        </tr>
-                        <tr>
-                            <td class="serial">4</td>
-                            <td class="page">login.spec.ts</td>
-                            <td class="summary">
-                                <strong>Should require email field</strong>
-                                <ul class="details-list">
-                                    <li>Navigate to login page</li>
-                                    <li>Leave email field empty</li>
-                                    <li>Fill password: "password123"</li>
-                                    <li>Click submit button</li>
-                                    <li>Verify email input validation fails</li>
-                                    <li>Check that form is marked as invalid</li>
-                                </ul>
-                            </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
-                        </tr>
-                        <tr>
-                            <td class="serial">5</td>
-                            <td class="page">login.spec.ts</td>
-                            <td class="summary">
-                                <strong>Should require password field</strong>
-                                <ul class="details-list">
-                                    <li>Navigate to login page</li>
-                                    <li>Fill email: "user@example.com"</li>
-                                    <li>Leave password field empty</li>
-                                    <li>Click submit button</li>
-                                    <li>Verify password input validation fails</li>
-                                    <li>Check that form is marked as invalid</li>
+                                    <li>Navigate to the login page.</li>
+                                    <li>Leave the email field empty, enter a valid password, and click the Submit button.</li>
+                                    <li>Verify email field validation is displayed and the form is marked as invalid.</li>
+                                    <li>Enter a valid email, leave the password field empty, and click the Submit button.</li>
+                                    <li>Verify password field validation is displayed and the form is marked as invalid.</li>
+                                    <li>Enter an invalid email (e.g., "invalid@example.com") and an invalid password (e.g., "wrongpassword").</li>
+                                    <li>Click the Sign In button.</li>
+                                    <li>Verify an authentication error is displayed and the user remains on the login page.</li>
+                                    <li>Confirm login is prevented until valid credentials are provided.</li>
                                 </ul>
                             </td>
                             <td><span class="status-badge status-ready">Ready</span></td>
@@ -318,22 +296,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">6</td>
-                            <td class="page">profile.spec.ts</td>
-                            <td class="summary">
-                                <strong>Should navigate to Profile via hamburger menu</strong>
-                                <ul class="details-list">
-                                    <li>Login as "manager"</li>
-                                    <li>Click hamburger navigation menu button</li>
-                                    <li>Click "Profile" link in the side navigation</li>
-                                    <li>Verify URL contains "settings/my-account"</li>
-                                    <li>Verify "Account Settings" heading is visible</li>
-                                </ul>
-                            </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
-                        </tr>
-                        <tr>
-                            <td class="serial">7</td>
+                            <td class="serial">3</td>
                             <td class="page">profile.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display personal information on Profile page</strong>
@@ -341,8 +304,11 @@
                                     <li>Login as "manager"</li>
                                     <li>Click hamburger navigation menu button</li>
                                     <li>Click "Profile" link in the side navigation</li>
+                                    <li>Verify URL contains "settings/my-account"</li>
                                     <li>Verify "Personal Information" heading is visible</li>
                                     <li>Verify "Name" and "Email" fields are visible</li>
+                                    <li>Verify "Theming" heading is visible</li>
+                                    <li>Verify "Theme" and "Dark/Light Mode" fields are visible</li>
                                 </ul>
                             </td>
                             <td><span class="status-badge status-ready">Ready</span></td>
@@ -365,37 +331,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">8</td>
-                            <td class="page">settings.spec.ts</td>
-                            <td class="summary">
-                                <strong>Should navigate to Settings via hamburger menu</strong>
-                                <ul class="details-list">
-                                    <li>Login as "manager"</li>
-                                    <li>Click hamburger navigation menu button</li>
-                                    <li>Click "Settings" link in the side navigation</li>
-                                    <li>Verify URL ends with "/settings"</li>
-                                    <li>Verify "User Settings" and "Administrative Settings" section labels are visible</li>
-                                    <li>Verify "Choose a setting on the left to edit" placeholder is visible</li>
-                                </ul>
-                            </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
-                        </tr>
-                        <tr>
-                            <td class="serial">9</td>
+                            <td class="serial">4</td>
                             <td class="page">settings.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display all administrative setting options</strong>
                                 <ul class="details-list">
                                     <li>Login as "manager" and navigate to /settings</li>
+                                    <li>Verify URL ends with "/settings"</li>
                                     <li>Verify "My Document Settings", "Pages Settings", "Request Forms" buttons are visible</li>
                                     <li>Verify "Theme Settings", "Site Administration" buttons are visible</li>
                                     <li>Verify "Cache Management", "Site Security", "Version Details" buttons are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">10</td>
+                            <td class="serial">5</td>
                             <td class="page">settings.spec.ts</td>
                             <td class="summary">
                                 <strong>Should navigate to Theme Settings section</strong>
@@ -407,10 +358,10 @@
                                     <li>Verify "Apply Theme to Site" button is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">11</td>
+                            <td class="serial">6</td>
                             <td class="page">settings.spec.ts</td>
                             <td class="summary">
                                 <strong>Should navigate to Pages Settings &gt; Welcome and display its configuration</strong>
@@ -424,7 +375,7 @@
                                     <li>Verify "Include in drawer" checkbox is checked</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -444,7 +395,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">12</td>
+                            <td class="serial">7</td>
                             <td class="page">settings-my-documents.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display My Documents Configuration page elements</strong>
@@ -455,10 +406,10 @@
                                     <li>Verify "Custom Query" label is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">13</td>
+                            <td class="serial">8</td>
                             <td class="page">settings-my-documents.spec.ts</td>
                             <td class="summary">
                                 <strong>Should add a new filter when clicking New Filter</strong>
@@ -468,7 +419,7 @@
                                     <li>Verify "Constraint Type" and "Operator" fields appear</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -488,7 +439,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">14</td>
+                            <td class="serial">9</td>
                             <td class="page">settings-request-forms.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Request Forms page elements</strong>
@@ -498,10 +449,10 @@
                                     <li>Verify "No Forms Configured" empty-state message is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">15</td>
+                            <td class="serial">10</td>
                             <td class="page">settings-request-forms.spec.ts</td>
                             <td class="summary">
                                 <strong>Should have an enabled Add button</strong>
@@ -509,7 +460,7 @@
                                     <li>Verify the "Add" button is enabled</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -529,7 +480,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">16</td>
+                            <td class="serial">11</td>
                             <td class="page">settings-cache-management.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Cache Management page elements</strong>
@@ -539,10 +490,10 @@
                                     <li>Verify "Refresh" and "Populate Cache" buttons are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">17</td>
+                            <td class="serial">12</td>
                             <td class="page">settings-cache-management.spec.ts</td>
                             <td class="summary">
                                 <strong>Should switch between Document Types and WorkView Applications tabs</strong>
@@ -551,7 +502,7 @@
                                     <li>Click "Document Types" tab and verify it becomes selected</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -571,7 +522,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">18</td>
+                            <td class="serial">13</td>
                             <td class="page">settings-version.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display version and hash information</strong>
@@ -580,10 +531,10 @@
                                     <li>Verify "Web UI Framework Version" and "Hash" headings are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">19</td>
+                            <td class="serial">14</td>
                             <td class="page">settings-version.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Web UI Help and Third Party Notices links</strong>
@@ -592,7 +543,7 @@
                                     <li>Verify "Font Awesome" link is visible with correct href</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -612,7 +563,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">20</td>
+                            <td class="serial">15</td>
                             <td class="page">settings-site-administration.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Site Administration toolbar and warning</strong>
@@ -623,10 +574,10 @@
                                     <li>Verify client-side toggles warning text is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">21</td>
+                            <td class="serial">16</td>
                             <td class="page">settings-site-administration.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Default Document Viewer Settings toggles</strong>
@@ -634,10 +585,10 @@
                                     <li>Verify all 7 Document Viewer checkboxes are visible (System Tasks, Ad Hoc Tasks, Revisions Icon, Delete Document Icon, Modify Keywords, Print Button, Auto Expand Keywords)</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">22</td>
+                            <td class="serial">17</td>
                             <td class="page">settings-site-administration.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Default WorkView Viewer Settings toggles</strong>
@@ -645,10 +596,10 @@
                                     <li>Verify "Enable History" and "Enable Save" checkboxes are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">23</td>
+                            <td class="serial">18</td>
                             <td class="page">settings-site-administration.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Keyword Settings toggles and dropdown</strong>
@@ -657,10 +608,10 @@
                                     <li>Verify "Standalone Keyword Display Order" dropdown label is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">24</td>
+                            <td class="serial">19</td>
                             <td class="page">settings-site-administration.spec.ts</td>
                             <td class="summary">
                                 <strong>Should toggle a Document Viewer setting switch</strong>
@@ -669,7 +620,7 @@
                                     <li>Click it and verify the checked state flips</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -689,7 +640,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">25</td>
+                            <td class="serial">20</td>
                             <td class="page">settings-site-security.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Site Security page elements</strong>
@@ -700,10 +651,10 @@
                                     <li>Verify "Choose a configuration on the left to get started" placeholder is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">26</td>
+                            <td class="serial">21</td>
                             <td class="page">settings-site-security.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display Pages policy configuration when selected</strong>
@@ -713,7 +664,7 @@
                                     <li>Verify "Category" label and "Web UI Pages" category are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -733,7 +684,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="serial">27</td>
+                            <td class="serial">22</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should navigate to Page Builder via hamburger menu</strong>
@@ -744,10 +695,10 @@
                                     <li>Verify "No page selected" heading is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">28</td>
+                            <td class="serial">23</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display the toolbar and empty state when no page is selected</strong>
@@ -757,10 +708,10 @@
                                     <li>Verify "Choose or create a page to get started" placeholder text is visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">29</td>
+                            <td class="serial">24</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should list the existing pages under the Pages section</strong>
@@ -769,10 +720,10 @@
                                     <li>Verify "Date Test", "PSMyPage", "PSWorkFlowPage" and "WV Document" page entries are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">30</td>
+                            <td class="serial">25</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should display available Controls to add to a page</strong>
@@ -781,10 +732,10 @@
                                     <li>Verify "Auto Query", "Form", "Keyword Search", "Search Results" and "Viewer" controls are visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">31</td>
+                            <td class="serial">26</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should filter the Controls list using the Filter Component search box</strong>
@@ -794,10 +745,10 @@
                                     <li>Verify non-matching controls "Auto Query" and "Keyword Search" are not visible</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">32</td>
+                            <td class="serial">27</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should collapse and expand the Pages list section</strong>
@@ -807,10 +758,10 @@
                                     <li>Click the "Pages" toggle again to expand and verify "Date Test" is visible again</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">33</td>
+                            <td class="serial">28</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should hide and show the left panel</strong>
@@ -820,10 +771,10 @@
                                     <li>Click "Show Left Panel" and verify "Pages" is visible again</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">34</td>
+                            <td class="serial">29</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should select a page and display its components and layout properties</strong>
@@ -834,10 +785,10 @@
                                     <li>Verify the Layout Properties panel shows "Layout Type" combobox, "Enable Page Toolbar" and "Enable Sidebar" checkboxes</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
                         </tr>
                         <tr>
-                            <td class="serial">35</td>
+                            <td class="serial">30</td>
                             <td class="page">page-builder.spec.ts</td>
                             <td class="summary">
                                 <strong>Should toggle the Layout Properties panel for a selected page</strong>
@@ -847,7 +798,220 @@
                                     <li>Click "Layout Properties" again to expand and verify "Layout Type" combobox is visible again</li>
                                 </ul>
                             </td>
-                            <td><span class="status-badge status-ready">Ready</span></td>
+                            <td><span class="status-badge status-pending">Code Needs Review</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Document Search Tests Section -->
+            <div class="section">
+                <div class="section-title">🔍 Document Search Tests (document-search.spec.ts)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serial">31</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should navigate to Document Search via hamburger menu</strong>
+                                <ul class="details-list">
+                                    <li>Open the hamburger navigation menu</li>
+                                    <li>Click "Document Search" link in the side navigation</li>
+                                    <li>Verify navigation to the "/document-search" page</li>
+                                    <li>Verify the "Document Type" field and "Search" button are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">32</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display the document search form fields and search type tabs</strong>
+                                <ul class="details-list">
+                                    <li>Verify "Document Type" combobox, "From Date" and "To Date" pickers are visible</li>
+                                    <li>Verify "document" and "custom query" search type tabs are visible with "document" selected by default</li>
+                                    <li>Verify "Search" and "Create Search Link" buttons are visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">33</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display dynamic keyword fields when a Document Type is selected</strong>
+                                <ul class="details-list">
+                                    <li>Open the "Document Type" dropdown and select "E-Form Doc"</li>
+                                    <li>Verify the "Keywords" section appears with fields such as "Date", "DateTime" and "WUI Candidate Name"</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">34</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should clear the selected Document Type using the Clear button</strong>
+                                <ul class="details-list">
+                                    <li>Select "E-Form Doc" from the "Document Type" dropdown</li>
+                                    <li>Click the "Clear" button next to the "Document Type" field</li>
+                                    <li>Verify the "Document Type" field is empty and the "Keywords" section is no longer visible</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">35</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should switch between Document and Custom Query search tabs</strong>
+                                <ul class="details-list">
+                                    <li>Click the "custom query" tab</li>
+                                    <li>Verify the "Custom Query" combobox is displayed in place of the "Document Type" field</li>
+                                    <li>Click the "document" tab again and verify the "Document Type" field is displayed again</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">36</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should display "No records to display" when searching with no criteria</strong>
+                                <ul class="details-list">
+                                    <li>Click the "Search" button without entering any search criteria</li>
+                                    <li>Verify the URL updates with the "search=true" query parameter</li>
+                                    <li>Verify the results grid shows "No records to display" and "0-0 of 0"</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">37</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should toggle the filter row using Show/Hide filters</strong>
+                                <ul class="details-list">
+                                    <li>Click the "Show/Hide filters" button</li>
+                                    <li>Verify a filter row appears with "Filter by Document Name", "Filter by Document Type" and "Filter by Document Date" textboxes</li>
+                                    <li>Click "Show/Hide filters" again and verify the filter row is hidden</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">38</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should toggle column visibility using the Show/Hide columns menu</strong>
+                                <ul class="details-list">
+                                    <li>Click the "Show/Hide columns" button</li>
+                                    <li>Verify the menu lists "Open Document", "Document Name", "Document Type" and "Document Date" columns with "Hide all" and "Show all" options</li>
+                                    <li>Click "Hide all" and verify all column visibility toggles become unchecked</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="serial">39</td>
+                            <td class="page">document-search.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should copy a shareable link using Create Search Link</strong>
+                                <ul class="details-list">
+                                    <li>Click the "Create Search Link" button</li>
+                                    <li>Verify a "Search link copied to clipboard" confirmation toast is displayed</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+			
+			<!-- Additional Test Cases -->
+            <div class="section">
+                <div class="section-title">🎯 Additional Test Cases</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="serial">S.No</th>
+                            <th class="page">Page</th>
+                            <th class="summary">Test Case Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        <tr>
+                            <td class="serial">40</td>
+                            <td class="page">Eform.spec.ts</td>
+                            <td class="summary">
+                                <strong>Should validate EForm end-to-end functionality in Web UI</strong>
+                                <ul class="details-list">
+                                    <li>Open an EForm from the Web UI.</li>
+									<li>Complete all required fields with valid data.</li>
+									<li>Verify form controls and validations work as expected.</li>
+									<li>Save and submit the EForm.</li>
+									<li>Confirm the submission is successful and data persists correctly.</li>
+									<li>Verify no errors occur during the EForm workflow.</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+					</tbody>
+                </table>
+            </div>
+
+            <!-- Recent Bug Findings -->
+            <div class="section">
+                <div class="section-title">🐞 Recent Bug Findings</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="bug-id">Bug ID</th>
+                            <th class="page" style="width: 220px;">Component</th>
+                            <th class="summary">Summary</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bug-id"><a href="https://hyland.atlassian.net/browse/WUIF-84" target="_blank" rel="noopener">WUIF-84</a></td>
+                            <td class="page">Forms - Date Field Validation</td>
+                            <td class="summary">
+                                <strong>Date field with "Disable Past Dates" becomes invalid after a previously submitted form is reopened later</strong>
+                                <ul class="details-list">
+                                    <li>Add a Date field to a form and enable the "Disable Past Dates" toggle</li>
+                                    <li>Submit the form with today's date, then reopen/review it on a later day</li>
+                                    <li>Actual: the previously submitted date is revalidated against the current day and is flagged as invalid because it is now in the past</li>
+                                    <li>Expected: "Disable Past Dates" should only prevent selecting a past date during entry/edit, not invalidate an already-submitted value during later review (e.g. Manager Review)</li>
+                                    <li>Customer workaround: uses two separate fields / alternate form design to avoid the validation problem in later workflow stages</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
+                        </tr>
+                        <tr>
+                            <td class="bug-id"><a href="https://hyland.atlassian.net/browse/WUIF-103" target="_blank" rel="noopener">WUIF-103</a></td>
+                            <td class="page">Page Builder - Auto Query Tile</td>
+                            <td class="summary">
+                                <strong>Auto Query tile count backed by a Workflow Queue caps at 50 regardless of actual queue size</strong>
+                                <ul class="details-list">
+                                    <li>Configure an Auto Query control with a Workflow Queue data source and enable the count display for tile view</li>
+                                    <li>Queues with 49 items show the correct count; queues with 52 items display as 50</li>
+                                    <li>Root cause unknown: could be an OnBase/Unity API page-size limitation or a Canvas-side pagination/count handling issue (auto-query-pc store / Canvas.ApiServerClient)</li>
+                                    <li>Misleading tile count risks users missing or mismanaging work items</li>
+                                    <li>Acceptance: root cause documented; tile shows exact count or a "50+" (i18n-friendly) indicator at the API cap; no regression on Auto Query tiles using other data sources</li>
+                                </ul>
+                            </td>
+                            <td><span class="status-badge status-bug">Not Automated</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -878,7 +1042,7 @@
                         </tr>
                         <tr>
                             <td><strong>Test Files</strong></td>
-                            <td>tests/login.spec.ts, tests/profile.spec.ts, tests/settings.spec.ts, tests/settings-my-documents.spec.ts, tests/settings-request-forms.spec.ts, tests/settings-cache-management.spec.ts, tests/settings-version.spec.ts, tests/settings-site-administration.spec.ts, tests/settings-site-security.spec.ts, tests/page-builder.spec.ts</td>
+                            <td>tests/login.spec.ts, tests/profile.spec.ts, tests/settings.spec.ts, tests/settings-my-documents.spec.ts, tests/settings-request-forms.spec.ts, tests/settings-cache-management.spec.ts, tests/settings-version.spec.ts, tests/settings-site-administration.spec.ts, tests/settings-site-security.spec.ts, tests/page-builder.spec.ts, tests/document-search.spec.ts</td>
                         </tr>
                         <tr>
                             <td><strong>Base URL</strong></td>
