@@ -1,12 +1,16 @@
 import { test as base, Page } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { SettingsPage } from '../pages/SettingsPage';
+import { ProfilePage } from '../pages/ProfilePage';
+import { CommonPageUtils } from '../pages/CommonPageUtils';
 
 
 type PageFixtures = {
   page: Page;
   loginPage: LoginPage;
   settingsPage: SettingsPage;
+  profilePage: ProfilePage;
+  commonPageUtils: CommonPageUtils;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -18,6 +22,14 @@ export const test = base.extend<PageFixtures>({
     const settingsPage = new SettingsPage(page);
     await use(settingsPage);
   },
+  profilePage: async ({ page }, use) => {
+    const profilePage = new ProfilePage(page);
+    await use(profilePage);
+  },
+  commonPageUtils: async ({ page }, use) => {
+    const commonPageUtils = new CommonPageUtils(page);
+    await use(commonPageUtils);
+  }
 
 });
 

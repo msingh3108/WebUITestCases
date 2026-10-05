@@ -31,14 +31,14 @@ test.describe('Login Tests', () => {
       for (const { jiraKey, status } of groupResults) {
         await updateTestInExecution(token, executionKey, jiraKey, status);
       }
-      console.log(`[Xray] Group 'Web Client Gallery Tests' update complete.`);
+      console.log(`[Xray] Group 'Login Tests' update complete.`);
     } catch (err) {
       console.error('[Xray] Group update failed:', err);
     }
   });
 
   test('Should login with valid credentials @Smoke', async ({ loginPage, page }) => {
-    test.info().annotations.push({ type: 'Jira', description: '' });
+    test.info().annotations.push({ type: 'Jira', description: 'WUIF-125' });
 
     await test.step('Login with valid credentials', async () => {
       await loginPage.login(process.env.STANDARD_USERNAME ?? 'MANAGER', process.env.STANDARD_PASSWORD ?? 'password');
@@ -52,7 +52,7 @@ test.describe('Login Tests', () => {
   });
 
   test('Should validate required fields and display error for invalid credentials @Smoke', async ({ loginPage, page }) => {
-    test.info().annotations.push({ type: 'Jira', description: '' });
+    test.info().annotations.push({ type: 'Jira', description: 'WUIF-126' });
 
     const expectedErrorMessage = 'Invalid email or password. If you have forgotten your password, please try the forgot password link.';
 
